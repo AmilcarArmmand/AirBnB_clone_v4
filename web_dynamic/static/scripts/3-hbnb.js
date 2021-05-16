@@ -13,7 +13,7 @@ $(document).ready(function () {
       $('DIV.amenities h4').text(Object.values(amenId).join(', '));
       console.log(Object.values(amenId));
     });
-    $.get('http://127.0.0.1:5001/api/v1/status/', function (data, textStatus) {
+    $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
       if (data.status === 'OK') {
         $('div#api_status').addClass('available');
       } else {

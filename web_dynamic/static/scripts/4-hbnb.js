@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const amenId = [];
-  $('INPUT').change(function () {
+  $(':checkbox').on('click', function () {
     if ($(this).is(':checked')) {
       // add amenity_id to amenity_id
       amenId[$(this).attr('data-id')] = $(this).attr('data-name');
@@ -26,7 +26,8 @@ $(document).ready(function () {
     url: 'http://0.0.0.0:5001/api/v1/places_search/',
     data: JSON.stringify({}),
     dataType: 'json',
-    success: function (data, textStatus, jQxhr) {
+    success: function (data) {
+      console.log('closer');
       const divTitle = "<article><div class='title_box'><h2></h2><div class='price_by_night'></div></div>";
       const divInfo = "<div class='information'><div class='max_guest'></div><div class='number_rooms'></div>";
       const divBaths = "<div class='number_bathrooms'></div></div><div class='description'></div></article>";
@@ -51,5 +52,11 @@ $(document).ready(function () {
     error: function (jqXhr, textStatus, errorThrown) {
       console.log(errorThrown);
     }
+  });
+  $(':button').on('click', function () {
+    alert(' hot sanwich ');
+    console.log('hot sandwich!');
+    let amenities = {'amenities': clicked};
+    console.log('amenities');
   });
 });

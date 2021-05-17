@@ -66,6 +66,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         console.log('closer still');
+        $('.places article').remove();
         $(data).each(function (index, value) {
           $('section.places').append(article);
           // console.log(index)

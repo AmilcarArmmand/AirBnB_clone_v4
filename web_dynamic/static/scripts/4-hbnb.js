@@ -56,7 +56,33 @@ $(document).ready(function () {
   $(':button').on('click', function () {
     alert(' hot sanwich ');
     console.log('hot sandwich!');
-    let amenities = {'amenities': clicked};
-    console.log('amenities');
+    const amenities = { amenities: amenId };
+    console.log(amenities);
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      data: JSON.stringify({ amenities }),
+      dataType: 'json',
+      success: function (data) {
+        console.log('closer still');
+        $(data).each(function (index, value) {
+          $('section.places').append(article);
+          // console.log(index)
+          // console.log(value)
+          $('.title_box h2').last().html(value.name);
+          // console.log(value.price_by_night)
+          $('.price_by_night').last().html('$' + value.price_by_night);
+          // console.log(value.max_guest)
+          $('.max_guest').last().html(value.max_guest);
+          // console.log(value.number_rooms)
+          $('.number_rooms').last().html(value.number_rooms);
+          // console.log(value.number_bathrooms)
+          $('.number_bathrooms').last().html(value.number_bathrooms);
+          // console.log(value.description)
+          $('.description').last().html(value.description);
+        });
+      }
+    });
   });
 });
